@@ -14,6 +14,10 @@ class ArticleCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'data' => $this->collection,
+            'created' => '14.08.2021',
+            'author' => 'borisoft82'
+        ];
     }
 }
