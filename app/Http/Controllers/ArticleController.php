@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ArticleCollection;
-use App\Http\Resources\ArticleResource;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Http\Resources\ArticleResource;
+use App\Http\Resources\ArticleCollection;
+
 
 class ArticleController extends Controller
 {
@@ -16,8 +18,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return new ArticleCollection(Article::all());
         //return ArticleResource::collection(Article::all());
+        return response()->json(new ArticleCollection(Article::all()), Response::HTTP_OK);
     }
 
     /**
@@ -71,5 +73,7 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         $article->delete();
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }
