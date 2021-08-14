@@ -55,7 +55,11 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $article->update($request->only([
+            'title', 'description', 'category', 'author', 'clicks'
+        ]));
+
+        return new ArticleResource($article);
     }
 
     /**
