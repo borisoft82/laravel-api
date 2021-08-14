@@ -28,7 +28,11 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $article = Article::create($request->only([
+            'title', 'description', 'category', 'author', 'clicks'
+        ]));
+
+        return new ArticleResource($article);
     }
 
     /**
